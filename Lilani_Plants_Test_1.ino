@@ -43,30 +43,31 @@ void loop() //continously loops
   
   if (Serial.available())
   {
-   // digitalWrite(led, HIGH);
+    //digitalWrite(led, HIGH);
     //digitalWrite(pump, HIGH);
     delay(1000);  
     char c = Serial.read();
     readString += c; 
-  }
-  if (readString.length() >0) {
-    Serial.println(readString);
-    if (readString == "o")     
+  
+    if (readString.length() >0) 
     {
-      digitalWrite(pump, HIGH);
-      Serial.println("Pump ON");
-    pump_status = 1;
-    delay(5000);
-    }
-    if (readString == "f")
-    {
-      digitalWrite(pump, LOW);
-      Serial.println("Pump OFF");
-      pump_status = 0;
-      delay(5000);
-    }
-    readString="";
-    
+      Serial.println(readString);
+      if (readString == "o")     
+      {
+        digitalWrite(pump, HIGH);
+        Serial.println("Pump ON");
+        pump_status = 1;
+        delay(5000);
+      }
+      if (readString == "f")
+      {
+        digitalWrite(pump, LOW);
+        Serial.println("Pump OFF");
+        pump_status = 0;
+        delay(5000);
+      }
+      readString=""; 
+     }
   }
 
   if (Serial.available() == false)
@@ -106,7 +107,7 @@ void loop() //continously loops
         Serial.println("Pump OFF");  
         pump_status = 0;
     }
-  }
+  
 }
 
 int Bluetooth() //maybe will need to optimize this for my bluetooth chip
